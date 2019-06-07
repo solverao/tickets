@@ -10,71 +10,70 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!-- Global stylesheets -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets/css/icons/icomoon/styles.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/core.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/components.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/colors.css') }}" rel="stylesheet">
+    <!-- /global stylesheets -->
+
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
-                <div class="navbar-header">
 
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse" aria-expanded="false">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
+<!-- Barra de navegacion -->
+@include('parciales.barra_navegacion')
+<!-- /Barra de navegacion -->
 
-                    <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
-                </div>
+<!-- Contenedor de pagina -->
+<div class="page-container">
 
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
+    <!-- Contenido de pagina-->
+    <div class="page-content">
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
-                        @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
+        <!-- Barra lateral principal -->
+        @include('parciales.barra_lateral_principal')
+        <!-- /Barra lateral principal -->
 
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
+        <!-- Contenido principal -->
+        <div class="content-wrapper">
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
+            <!-- Encabezado_de pagina -->
+            @include('parciales.encabezado_pagina')
+            <!-- /Encabezado_de pagina -->
+
+            <!-- Area de contenido -->
+            <div class="content">
+
+                <!-- Form horizontal -->
+                @yield('content')
+                <!-- /form horizontal -->
+
+                <!-- Pie de pagina -->
+                @include('parciales.pie_pagina')
+                <!-- /Pie de pagina -->
+
             </div>
-        </nav>
+            <!-- /Area de contenido -->
 
-        @yield('content')
+        </div>
+        <!-- /Contenido principal -->
+
     </div>
+    <!-- /Contenido de pagina -->
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+</div>
+<!-- /Contenedor de pagina-->
+
+
+    <!-- Core JS files -->
+    <script src="{{ asset('assets/js/plugins/loaders/pace.min.js') }}"></script>
+    <script src="{{ asset('assets/js/core/libraries/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/js/core/libraries/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/loaders/blockui.min.js') }}"></script>
+    <!-- /core JS files -->
+
+    @yield('theme_js_files')
 </body>
 </html>
