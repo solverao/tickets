@@ -16,8 +16,8 @@ class CreateTicketsTable extends Migration
         Schema::create('tickets', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned(); //  usuario quien realizo el tikcet
-            $table->integer('termino_id')->unsigned(); //  usuario a quien fue asignado el tikcet
-            $table->integer('sistema_id')->unsigned();  // sobre que sistema se levanto el ticket
+            $table->integer('resolvio_id')->unsigned(); //  usuario a quien fue asignado el tikcet
+            $table->integer('system_id')->unsigned();  // sobre que sistema se levanto el ticket
             $table->integer('type_id')->unsigned();; //  tipo de ticket
             $table->integer('status_id')->unsigned();;
             $table->integer('priority_id')->unsigned();;
@@ -28,7 +28,7 @@ class CreateTicketsTable extends Migration
 
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('resolvio_id')->references('id')->on('users');
-            $table->foreign('sistema_id')->references('id')->on('systems');
+            $table->foreign('system_id')->references('id')->on('systems');
             $table->foreign('type_id')->references('id')->on('types');
             $table->foreign('status_id')->references('id')->on('statuses');
             $table->foreign('priority_id')->references('id')->on('priorities');

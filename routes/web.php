@@ -21,6 +21,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::prefix('ticket')->group(function () {
-    Route::view('/', 'ticket.lista_ticket')->name('tk_lista');
+    Route::get('/', 'TicketController@index');
     Route::view('/alta', 'ticket.alta_ticket')->name('tk_alta');
 });
