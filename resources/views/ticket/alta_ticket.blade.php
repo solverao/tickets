@@ -32,11 +32,11 @@
                             <div class="col-xs-3">
                                 <label class="control-label">Sistema</label>
                                 <div>
-                                    <select name="select" class="form-control" name="status">
-                                        @forelse($catalogos['status'] as $status)
-                                            <option value="{{ $status->display_name }}">{{ $status->display_name }}</option>
+                                    <select class="form-control" name="system_id">
+                                        @forelse($catalogos['system'] as $system)
+                                            <option value="{{ $system->id }}">{{ $system->display_name }}</option>
                                         @empty
-                                            No hay prioridad disponible
+                                            No hay Sistemas disponibles
                                         @endforelse
                                     </select>
                                 </div>
@@ -45,9 +45,9 @@
                             <div class="col-xs-4">
                                 <label class="control-label">Tipo de ticket</label>
                                 <div>
-                                    <select name="select" class="form-control" name="type">
+                                    <select class="form-control" name="type_id">
                                         @forelse($catalogos['type'] as $type)
-                                            <option value="{{ $type->display_name }}">{{ $type->display_name }}</option>
+                                            <option value="{{ $type->id }}">{{ $type->display_name }}</option>
                                         @empty
                                             No hay prioridad disponible
                                         @endforelse
@@ -58,9 +58,9 @@
                             <div class="col-xs-5">
                                 <label class="control-label">Prioridad</label>
                                 <div>
-                                    <select name="select" class="form-control" name="priority">
+                                    <select class="form-control" name="priority_id">
                                         @forelse($catalogos['priority'] as $priority)
-                                            <option value="{{ $priority->display_name }}">{{ $priority->display_name }}</option>
+                                            <option value="{{ $priority->id }}">{{ $priority->display_name }}</option>
                                         @empty
                                             No hay prioridad disponible
                                         @endforelse
@@ -75,7 +75,7 @@
                     <div class="col-lg-12">
                         <label class="control-label">Fecha de vencimiento</label>
                         <div>
-                            <input type="text" class="form-control daterange-single" value="03/18/2013">
+                            <input type="text" class="form-control daterange-single" name="fecha_vencimiento" value="03/18/2013">
                         </div>
                     </div>
                 </div>
@@ -127,5 +127,8 @@
     <script src="{{ asset('assets/js/plugins/pickers/pickadate/legacy.js') }}"></script>
 
     <script src="{{ asset('assets/js/pages/picker_date.js') }}"></script>
+
+    <script src="{{ asset('assets/js/plugins/forms/styling/uniform.min.js') }}"></script>
+    <script src="{{ asset('assets/js/core/app.js') }}"></script>
 @endsection
 

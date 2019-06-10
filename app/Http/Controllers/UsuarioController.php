@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\TicketService;
-use Illuminate\Http\Request;
+
+use App\Services\UserService;
 
 class UsuarioController extends Controller
 {
     public function index()
     {
-        return view('usuario.lista_usuario');
+        $user = new UserService();
+        $users = $user->consultar_usuarios();
+        return view('usuario.lista_usuario', compact('users'));
     }
 
     public function crear()

@@ -22,7 +22,7 @@ class CreateTicketsTable extends Migration
             $table->text('descripcion')->nullable();
 
             $table->integer('user_id')->unsigned(); //  usuario quien realizo el tikcet
-            $table->integer('resolvio_id')->unsigned(); //  usuario a quien fue asignado el tikcet
+            $table->integer('resolvio_id')->unsigned()->nullable(); //  usuario a quien fue asignado el tikcet
             $table->integer('status_id')->unsigned();
             $table->dateTime('fecha_vencimiento')->nullable();
             $table->dateTime('fecha_termino')->nullable();

@@ -66,6 +66,8 @@
     <!-- Theme JS files -->
     <script src="{{ asset('assets/js/plugins/editors/summernote/summernote.min.js') }}"></script>
     <script src="{{ asset('assets/js/pages/editor_summernote.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/form_inputs.js') }}"></script>
+    <script src="{{ asset('assets/js/core/app.js') }}"></script>
     <!-- /theme JS files -->
 @endsection
 

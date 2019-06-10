@@ -9,6 +9,7 @@
 
                     <!-- Main -->
                     <li class="navigation-header"><span>Main</span> <i class="icon-menu" title="Main pages"></i></li>
+                    @role('admin')
                     <li>
                         <a href="#"><i class="icon-stack2"></i> <span>Administrador</span></a>
                         <ul>
@@ -19,13 +20,16 @@
                             <li class="{{ navActive('usr_asignar') }}"><a href="{{ route('usr_asignar') }}">Asignaciones</a></li>
                         </ul>
                     </li>
+                    @endrole
+                    @role('realizar')
                     <li>
-                        <a href="#"><i class="icon-stack2"></i> <span>Tickets</span></a>
+                        <a href="#"><i class="icon-stack2"></i> <span>Gestion de Tickets</span></a>
                         <ul>
                             <li class="{{ navActive('tk_lista') }}"><a href="{{ route('tk_lista') }}">Tickets</a></li>
                             <li class="{{ navActive('tk_alta') }}"><a href="{{ route('tk_alta') }}">Alta ticket</a></li>
                         </ul>
                     </li>
+                    @endrole
                     <!-- /main -->
                 </ul>
             </div>

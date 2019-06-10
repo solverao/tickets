@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Models\System;
+use App\Models\Ticket;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
@@ -28,4 +30,19 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class);
+    }
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
+    }
+
+    public function systems()
+    {
+        return $this->belongsToMany(System::class);
+    }
 }

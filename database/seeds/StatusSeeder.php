@@ -13,6 +13,13 @@ class StatusSeeder extends Seeder
     public function run()
     {
         Status::create([
+            'name' => 'PENDING',
+            'display_name' => 'PENDIENTE',
+            'description' => 'Sin procesar',
+            'created_at' => new DateTime,
+            'updated_at' => new DateTime]);
+
+        Status::create([
             'name' => 'SUSPENDED',
             'display_name' => 'SUSPENDIDO',
             'description' => 'Aun no se resuleve pero no afecta el tiempo transcurrido',

@@ -20,6 +20,19 @@ class CreateSystemsTable extends Migration
             $table->string('description')->nullable();
             $table->timestamps();
         });
+
+        // Create table for associating roles to users (Many-to-Many)
+        Schema::create('system_user', function (Blueprint $table) {
+            $table->integer('user_id')->unsigned();
+            $table->integer('system_id')->unsigned();
+
+            $table->foreign('user_id')->references('id')->on('users')
+                ->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('system_id')->references('id')->on('systems')
+                ->onUpdate('cascade')->onDelete('cascade');
+
+            $table->primary(['user_id', 'system_id']);
+        });
     }
 
     /**

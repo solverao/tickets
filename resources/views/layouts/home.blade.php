@@ -22,41 +22,26 @@
 </head>
 <body>
 
-@auth
-<!-- Barra de navegacion -->
-@include('parciales.barra_navegacion')
-<!-- /Barra de navegacion -->
-@endauth
-
 <!-- Contenedor de pagina -->
 <div class="page-container">
 
     <!-- Contenido de pagina-->
     <div class="page-content">
 
-        @auth
-        <!-- Barra lateral principal -->
-        @include('parciales.barra_lateral_principal')
-        <!-- /Barra lateral principal -->
-        @endauth
-
         <!-- Contenido principal -->
         <div class="content-wrapper">
 
             <!-- Encabezado_de pagina -->
-{{--            @include('parciales.encabezado_pagina')--}}
-            <!-- /Encabezado_de pagina -->
+        {{--            @include('parciales.encabezado_pagina')--}}
+        <!-- /Encabezado_de pagina -->
 
             <!-- Area de contenido -->
             <div class="content">
 
                 <!-- Form horizontal -->
-                @yield('content')
-                <!-- /form horizontal -->
+            @yield('content')
+            <!-- /form horizontal -->
 
-                <!-- Pie de pagina -->
-                @include('parciales.pie_pagina')
-                <!-- /Pie de pagina -->
 
             </div>
             <!-- /Area de contenido -->
@@ -71,14 +56,14 @@
 <!-- /Contenedor de pagina-->
 
 
-    <!-- Core JS files -->
-    <script src="{{ asset('assets/js/plugins/loaders/pace.min.js') }}"></script>
-    <script src="{{ asset('assets/js/core/libraries/jquery.min.js') }}"></script>
-    <script src="{{ asset('assets/js/core/libraries/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/loaders/blockui.min.js') }}"></script>
-    <!-- /core JS files -->
+<!-- Core JS files -->
+<script src="{{ asset('assets/js/plugins/loaders/pace.min.js') }}"></script>
+<script src="{{ asset('assets/js/core/libraries/jquery.min.js') }}"></script>
+<script src="{{ asset('assets/js/core/libraries/bootstrap.min.js') }}"></script>
+<script src="{{ asset('assets/js/plugins/loaders/blockui.min.js') }}"></script>
+<!-- /core JS files -->
 
 
-    @yield('theme_js_files')
+@yield('theme_js_files')
 </body>
 </html>

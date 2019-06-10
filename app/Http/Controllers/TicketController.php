@@ -3,24 +3,29 @@
 namespace App\Http\Controllers;
 
 use App\Services\TicketService;
+use Illuminate\Support\Facades\Redirect;
 
 class TicketController extends Controller
 {
     public function index()
     {
-        return view('ticket.lista_ticket');
+        $ticket = new TicketService();
+        $tickets = $ticket->consultar_tickets(Request());
+        $usuarios = $ticket->consultar_usuarios();
+        return view('ticket.lista_ticket', compact('tickets', 'usuarios'));
     }
 
     public  function alta()
     {
         $ticket = new TicketService();
-        $catalogos = $ticket->consulta_catalogos();
-        return view('ticket.alta_ticket', ['catalogos' => $catalogos]);
+        $catalogos = $ticket->consultar_catalogos();
+        return view('ticket.alta_ticket', compact('catalogos'));
     }
 
     public  function crear()
     {
-        dd(Request()->descripcion);
-        return view('ticket.alta_ticket', ['catalogos' => $catalogos]);
+        $ticket = new TicketService();
+        $ticket->guardar_ticket(Request());
+        return Redirect::back();
     }
 }
