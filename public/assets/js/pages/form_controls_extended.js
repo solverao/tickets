@@ -151,7 +151,7 @@ $(function() {
     // Input group indicator
     $inputGroup.passy(function(strength) {
         $outputGroup.text(feedback[strength].text);
-        $outputGroup.css('background-color', feedback[strength].color).css('border-color', feedback[strength].color).css('color', feedback[strength].textColor);
+        $outputGroup.css('color', feedback[strength].color);
     });
 
 
@@ -180,11 +180,16 @@ $(function() {
     // ------------------------------
 
     // Basic example
-    $('.maxlength').maxlength();
+    $('.maxlength').maxlength({
+        warningClass: "text-success",
+        limitReachedClass: "text-danger"
+    });
 
     // Threshold
     $('.maxlength-threshold').maxlength({
-        threshold: 15
+        threshold: 15,
+        warningClass: "text-success",
+        limitReachedClass: "text-danger"
     });
 
     // Custom label color
@@ -208,13 +213,17 @@ $(function() {
 
     // Always show label
     $('.maxlength-textarea').maxlength({
-        alwaysShow: true
+        alwaysShow: true,
+        warningClass: "text-success",
+        limitReachedClass: "text-danger"
     });
 
     // Label position
     $('.maxlength-label-position').maxlength({
         alwaysShow: true,
-        placement: 'top'
+        placement: 'top',
+        warningClass: "text-success",
+        limitReachedClass: "text-danger"
     });
 
 

@@ -15,13 +15,15 @@ class CreateTicketsTable extends Migration
     {
         Schema::create('tickets', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('asunto')->nullable();
+            $table->integer('system_id')->unsigned();  // sobre que sistema se levanto el ticket
+            $table->integer('type_id')->unsigned(); //  tipo de ticket
+            $table->integer('priority_id')->unsigned();
+            $table->text('descripcion')->nullable();
+
             $table->integer('user_id')->unsigned(); //  usuario quien realizo el tikcet
             $table->integer('resolvio_id')->unsigned(); //  usuario a quien fue asignado el tikcet
-            $table->integer('system_id')->unsigned();  // sobre que sistema se levanto el ticket
-            $table->integer('type_id')->unsigned();; //  tipo de ticket
-            $table->integer('status_id')->unsigned();;
-            $table->integer('priority_id')->unsigned();;
-            $table->text('descripcion')->nullable();
+            $table->integer('status_id')->unsigned();
             $table->dateTime('fecha_vencimiento')->nullable();
             $table->dateTime('fecha_termino')->nullable();
             $table->timestamps();
