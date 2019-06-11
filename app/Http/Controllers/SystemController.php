@@ -22,6 +22,6 @@ class SystemController extends Controller
     {
         $sistema = new SystemService();
         $sistemas = $sistema->crear_sistema(Request());
-        return view('sistema.alta_sistema');
+        return redirect()->back();
     }
 }

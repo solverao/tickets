@@ -19,4 +19,10 @@ class UserService
     {
         return $this->user->all();
     }
+
+    public function crear_usuarios()
+    {
+        Request()['password'] = bcrypt(Request()['password']);
+        return $this->user->create(Request()->toArray());
+    }
 }

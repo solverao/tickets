@@ -5,7 +5,7 @@
     <!-- Form horizontal -->
     <div class="panel panel-flat">
         <div class="panel-heading">
-            <h5 class="panel-title">Nuevo Sistema</h5>
+            <h5 class="panel-title">Nuevo Usuario</h5>
             <div class="heading-elements">
                 <ul class="icons-list">
                     <li><a data-action="collapse"></a></li>
@@ -14,9 +14,11 @@
         </div>
 
         <div class="panel-body">
-            <form class="form-horizontal" method="POST" action="{{ route('sys_crear') }}">
+            <form class="form-horizontal" method="POST" action="{{ route('usr_crear') }}">
                 {{ csrf_field() }}
                 <fieldset class="content-group">
+
+
                     <div class="form-group">
                         <label class="control-label col-lg-2">Nombre</label>
                         <div class="col-lg-10">
@@ -25,18 +27,52 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-lg-2">Nombre a mostrar</label>
+                        <label class="control-label col-lg-2">Correo electronico</label>
                         <div class="col-lg-10">
-                            <input type="text" class="form-control" name="display_name">
+                            <input type="text" class="form-control" name="email">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-lg-2">Descripcion</label>
+                        <label class="control-label col-lg-2">Contraseña</label>
                         <div class="col-lg-10">
-                            <input type="text" class="form-control" name="description">
+                            <input type="text" class="form-control" name="password">
                         </div>
                     </div>
+
+
+                    <!-- Default multiselect -->
+                    <div class="form-group">
+                        <label class="control-label col-lg-2">Asignar sistemas</label>
+                        <div class="multi-select-full col-lg-10">
+                            <select class="multiselect" multiple="multiple" name="multiple[]">
+                                @if($sistemas)
+                                    @forelse($sistemas as $sistema)
+                                        <option value="{{ $sistema->id }}">{{ $sistema->name }}</option>
+                                    @empty
+
+                                    @endforelse
+                                @endif
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-lg-2">Asignar roles</label>
+                        <div class="multi-select-full col-lg-10">
+                            <select class="multiselect" multiple="multiple" name="multiple[]">
+                                @if($roles)
+                                    @forelse($roles as $role)
+                                        <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                    @empty
+
+                                    @endforelse
+                                @endif
+                            </select>
+                        </div>
+                    </div>
+                    <!-- /default multiselect -->
+
                 </fieldset>
 
                 <div class="text-right">
@@ -55,6 +91,14 @@
     <script src="{{ asset('assets/js/pages/editor_summernote.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/forms/styling/uniform.min.js') }}"></script>
     <script src="{{ asset('assets/js/core/app.js') }}"></script>
+
+    <script src="{{ asset('assets/js/plugins/forms/styling/uniform.min.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/notifications/pnotify.min.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/forms/selects/bootstrap_multiselect.js') }}"></script>
+
+    <script src="{{ asset('assets/js/pages/form_multiselect.js') }}"></script>
+
+    <script src="{{ asset('assets/js/plugins/ui/ripple.min.js') }}"></script>
     <!-- /theme JS files -->
 @endsection
 

@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 
+use App\Services\RolService;
+use App\Services\SystemService;
 use App\Services\UserService;
+use Illuminate\Support\Facades\Redirect;
 
 class UsuarioController extends Controller
 {
@@ -14,9 +17,20 @@ class UsuarioController extends Controller
         return view('usuario.lista_usuario', compact('users'));
     }
 
+    public function alta()
+    {
+        $sistema = new SystemService();
+        $roles = new RolService();
+        $sistemas = $sistema->consultar_sistemas();
+        $roles = $roles->consultar_roles();
+        return view('usuario.alta_usuario', compact('sistemas', 'roles'));
+    }
+
     public function crear()
     {
-        return view('usuario.alta_usuario');
+        $user = new UserService();
+        $user->crear_usuarios(Request());
+        return Redirect::back();
     }
 
     public function asignar()

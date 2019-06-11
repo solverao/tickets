@@ -26,9 +26,12 @@ Route::group(['prefix' => 'ticket', 'middleware' => ['role:realizar']], function
 });
 
 Route::group(['prefix' => 'administrador', 'middleware' => ['role:admin']], function() {
-    Route::get('/usuario', 'UsuarioController@index')->name('usr_alta');
-    Route::get('/usuario/alta', 'UsuarioController@crear')->name('usr_lista');
+    Route::get('/usuario', 'UsuarioController@index')->name('usr_lista');
+    Route::get('/usuario/alta', 'UsuarioController@alta')->name('usr_alta');
+    Route::post('/usuario/alta', 'UsuarioController@crear')->name('usr_crear');
+
     Route::get('/usuario/asignar', 'UsuarioController@asignar')->name('usr_asignar');
+
     Route::get('/sistema', 'SystemController@index')->name('sys_lista');
     Route::get('/sistema/alta', 'SystemController@alta')->name('sys_alta');
     Route::post('/sistema/alta', 'SystemController@crear')->name('sys_crear');

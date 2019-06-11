@@ -48,20 +48,11 @@ class TicketService
         return $catalogos;
     }
 
-    public function guardar_ticket(Request $request)
+    public function guardar_ticket()
     {
-        $ticket = new Ticket;
-        $ticket->asunto = $request->asunto;
-        $ticket->system_id = $request->system_id;
-        $ticket->type_id = $request->type_id;
-        $ticket->priority_id = $request->priority_id;
-        $ticket->descripcion = $request->descripcion;
-        $ticket->user_id = $request->user()->id;
-        $ticket->resolvio_id = null;
-        $ticket->status_id = 1;
-        $ticket->fecha_vencimiento = $request->fecha_vencimiento;
-        $ticket->fecha_termino = null;
-        return $ticket->save();
+        Request()['user_id'] = Request()->user()->id;
+        Request()['status_id'] = 1;
+        return $this->ticket->create(Request()->toArray());
     }
 
     public function consultar_usuarios()
