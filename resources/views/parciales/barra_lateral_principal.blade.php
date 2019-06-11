@@ -8,7 +8,6 @@
                 <ul class="navigation navigation-main navigation-accordion">
 
                     <!-- Main -->
-                    <li class="navigation-header"><span>Main</span> <i class="icon-menu" title="Main pages"></i></li>
                     @role('admin')
                     <li>
                         <a href="#"><i class="icon-stack2"></i> <span>Administrador</span></a>
@@ -17,7 +16,6 @@
                             <li class="{{ navActive('usr_lista') }}"><a href="{{ route('usr_alta') }}">Alta usuario</a></li>
                             <li class="{{ navActive('sys_lista') }}"><a href="{{ route('sys_lista') }}">Sistemas</a></li>
                             <li class="{{ navActive('sys_alta') }}"><a href="{{ route('sys_alta') }}">Alta sistema</a></li>
-                            <li class="{{ navActive('usr_asignar') }}"><a href="{{ route('usr_asignar') }}">Asignaciones</a></li>
                         </ul>
                     </li>
                     @endrole

@@ -32,3 +32,11 @@ function valStatus($name)
         return 'label label-default';
     }
 }
+
+function inArray($value, $list)
+{
+    if (in_array($value, $list))
+    {
+        return required;
+    }
+}

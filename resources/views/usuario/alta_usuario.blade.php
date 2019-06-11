@@ -22,33 +22,35 @@
                     <div class="form-group">
                         <label class="control-label col-lg-2">Nombre</label>
                         <div class="col-lg-10">
-                            <input type="text" class="form-control" name="name">
+                            <input type="text" class="form-control" name="name" value="{{ isset($editUser) ? $editUser->name : '' }}">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="control-label col-lg-2">Correo electronico</label>
                         <div class="col-lg-10">
-                            <input type="text" class="form-control" name="email">
+                            <input type="text" class="form-control" name="email" value="{{ isset($editUser) ? $editUser->email : '' }}">
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label class="control-label col-lg-2">Contraseña</label>
-                        <div class="col-lg-10">
-                            <input type="text" class="form-control" name="password">
+                    @if(is_null($editUser))
+                        <div class="form-group">
+                            <label class="control-label col-lg-2">Contraseña</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" name="password">
+                            </div>
                         </div>
-                    </div>
+                    @endif
 
 
                     <!-- Default multiselect -->
                     <div class="form-group">
                         <label class="control-label col-lg-2">Asignar sistemas</label>
                         <div class="multi-select-full col-lg-10">
-                            <select class="multiselect" multiple="multiple" name="multiple[]">
+                            <select class="multiselect" multiple="multiple" name="system[]">
                                 @if($sistemas)
                                     @forelse($sistemas as $sistema)
-                                        <option value="{{ $sistema->id }}">{{ $sistema->name }}</option>
+                                        <option  value="{{ $sistema->id }}">{{ $sistema->name }}</option>
                                     @empty
 
                                     @endforelse
@@ -60,7 +62,7 @@
                     <div class="form-group">
                         <label class="control-label col-lg-2">Asignar roles</label>
                         <div class="multi-select-full col-lg-10">
-                            <select class="multiselect" multiple="multiple" name="multiple[]">
+                            <select class="multiselect" multiple="multiple" name="rol[]">
                                 @if($roles)
                                     @forelse($roles as $role)
                                         <option value="{{ $role->id }}">{{ $role->name }}</option>

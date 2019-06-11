@@ -13,11 +13,11 @@
 
 Route::get('/', function () {
     return view('welcome');
-})->name('inicio');
+})->name('inicio')->middleware('auth');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 
 Route::group(['prefix' => 'ticket', 'middleware' => ['role:realizar']], function() {
     Route::get('/', 'TicketController@index')->name('tk_lista');
@@ -29,6 +29,8 @@ Route::group(['prefix' => 'administrador', 'middleware' => ['role:admin']], func
     Route::get('/usuario', 'UsuarioController@index')->name('usr_lista');
     Route::get('/usuario/alta', 'UsuarioController@alta')->name('usr_alta');
     Route::post('/usuario/alta', 'UsuarioController@crear')->name('usr_crear');
+    Route::get('/usuario/asignar/{id}', 'UsuarioController@asignar')->name('usr_asignar');
+    Route::post('/usuario/update/{id}', 'UsuarioController@update')->name('usr_update');
 
     Route::get('/usuario/asignar', 'UsuarioController@asignar')->name('usr_asignar');
 

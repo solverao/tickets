@@ -35,6 +35,19 @@ class CreateTicketsTable extends Migration
             $table->foreign('status_id')->references('id')->on('statuses');
             $table->foreign('priority_id')->references('id')->on('priorities');
         });
+
+        //  Tickets asignados
+        Schema::create('ticket_user', function (Blueprint $table) {
+            $table->integer('user_id')->unsigned();
+            $table->integer('ticket_id')->unsigned();
+
+            $table->foreign('user_id')->references('id')->on('users')
+                ->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('ticket_id')->references('id')->on('tickets')
+                ->onUpdate('cascade')->onDelete('cascade');
+
+            $table->primary(['user_id', 'ticket_id']);
+        });
     }
 
     /**

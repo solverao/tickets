@@ -67,9 +67,8 @@
                                         </a>
 
                                         <ul class="dropdown-menu dropdown-menu-right">
-                                            <li><a href="#"><i class="icon-file-pdf"></i> Export to .pdf</a></li>
-                                            <li><a href="#"><i class="icon-file-excel"></i> Export to .csv</a></li>
-                                            <li><a href="#"><i class="icon-file-word"></i> Export to .doc</a></li>
+                                            <li><a href="#"><i class="icon-database-remove"></i> Eliminar</a></li>
+                                            <li><a href="#"><i class="icon-database-edit2"></i> Editar</a></li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -91,6 +90,7 @@
     <script src="{{ asset('assets/js/plugins/forms/selects/select2.min.js') }}"></script>
     <script src="{{ asset('assets/js/pages/datatables_advanced.js') }}"></script>
     <script src="{{ asset('assets/js/pages/form_inputs.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/forms/styling/uniform.min.js') }}"></script>
     <script src="{{ asset('assets/js/core/app.js') }}"></script>
     <!-- /theme JS files -->
 @endsection

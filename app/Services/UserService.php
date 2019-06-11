@@ -15,6 +15,11 @@ class UserService
         $this->user = new UserRepositorie($this->app);
     }
 
+    public function consultar_usuario($id)
+    {
+        return $this->user->find($id);
+    }
+
     public function consultar_usuarios()
     {
         return $this->user->all();
@@ -22,7 +27,22 @@ class UserService
 
     public function crear_usuarios()
     {
-        Request()['password'] = bcrypt(Request()['password']);
-        return $this->user->create(Request()->toArray());
+        $user['name'] = Request()['name'];
+        $user['email'] = Request()['email'];
+        $user['password'] = bcrypt(Request()['password']);
+
+        $user = $this->user->create($user);
+
+        foreach (Request()['rol'] as $rol)
+        {
+            $user->roles()->attach($rol);
+        }
+
+        foreach (Request()['system'] as $sistem)
+        {
+            $user->systems()->attach($sistem);
+        }
+
+        return $user;
     }
 }
