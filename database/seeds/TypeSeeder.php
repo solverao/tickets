@@ -15,21 +15,14 @@ class TypeSeeder extends Seeder
         Type::create([
             'name' => 'FAIL',
             'display_name' => 'FALLA',
-            'description' => 'Falla o problemas de funcionamiento',
+            'description' => 'Falla critica',
             'created_at' => new DateTime,
             'updated_at' => new DateTime]);
 
         Type::create([
-            'name' => 'REQUIREMENT',
-            'display_name' => 'REQUERIMENTO',
-            'description' => 'Requerimento adicinal a lo que ya existe',
-            'created_at' => new DateTime,
-            'updated_at' => new DateTime]);
-
-        Type::create([
-            'name' => 'UPGRADE',
-            'display_name' => 'ACTUALIZACION',
-            'description' => 'Mejora de lo que ya existe',
+            'name' => 'NOTIFICATION',
+            'display_name' => 'NOTIFICACION',
+            'description' => 'Falla no critica',
             'created_at' => new DateTime,
             'updated_at' => new DateTime]);
     }

@@ -1,5 +1,5 @@
 <!-- Main navbar -->
-<div class="navbar navbar-inverse bg-primary">
+<div class="navbar navbar-default">
     <div class="navbar-header">
         <a class="navbar-brand" href="{{ route('inicio') }}">Tickets</a>
 

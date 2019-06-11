@@ -13,7 +13,7 @@ class UserSeeder extends Seeder
     public function run()
     {
         User::create(['name' => 'admin',
-            'email' => 'admin@mail.cpm',
+            'email' => 'admin@mail.com',
             'password' => bcrypt('123456'),
             'created_at' => new DateTime,
             'updated_at' => new DateTime]);

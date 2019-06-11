@@ -16,7 +16,9 @@
         </div>
 
         <div class="panel-body">
-
+            <div class="text-left">
+                <a href="{{ route('ticket.create') }}"><button type="button" class="btn btn-success">Nuevo ticket <i class="icon-add-to-list position-right"></i></button></a>
+            </div>
         </div>
 
         <table class="table datatable-show-all">
@@ -25,7 +27,6 @@
                 <th>No.</th>
                 <th>Asunto</th>
                 <th>Realizo</th>
-                <th>Asignar</th>
                 <th>Sistema</th>
                 <th>Fecha</th>
                 <th>Status</th>
@@ -39,18 +40,6 @@
                         <td>{{ $ticket->id }}</td>
                         <td>{{ $ticket->asunto }}</td>
                         <td>{{ $ticket->user->name }}</td>
-                        <td>
-                            @if($usuarios)
-                                <select class="form-control" name="user_id">
-                                    <option value="0">Sin asignar</option>
-                                    @forelse($usuarios as $usuario)
-                                        <option value="{{ $usuario->id }}">{{ $usuario->name }}</option>
-                                    @empty
-                                        <option value="0">No hay usuarios</option>
-                                    @endforelse
-                                </select>
-                            @endif
-                        </td>
                         <td>{{ $ticket->system->name }}</td>
                         <td>{{ $ticket->created_at }}</td>
                         <td><span class="{{ valStatus($ticket->status->display_name) }}">{{ $ticket->status->display_name }}</span></td>
@@ -62,8 +51,8 @@
                                     </a>
 
                                     <ul class="dropdown-menu dropdown-menu-right">
-                                        <li><a href="#"><i class="icon-alert"></i> Eliminar</a></li>
-                                        <li><a href="#"><i class="glyphicon-edit"></i> Editar</a></li>
+                                        <li><a href="#"><i class="icon-database-remove"></i> Dar de baja</a></li>
+                                        <li><a href="{{ route('ticket.show', $ticket->id) }}"><i class="icon-database-check"></i> Ver</a></li>
                                     </ul>
                                 </li>
                             </ul>

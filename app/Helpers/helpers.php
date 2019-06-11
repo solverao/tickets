@@ -40,3 +40,12 @@ function inArray($value, $list)
         return required;
     }
 }
+
+function selected($value, $list, $name)
+{
+    $array = $list->pluck($name)->toArray();
+    if (in_array($value, $array))
+    {
+        return 'selected';
+    }
+}

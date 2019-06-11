@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\Catalogs\Priority;
 use App\Models\Catalogs\Status;
+use App\Models\Catalogs\Type;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 
@@ -26,5 +28,15 @@ class Ticket extends Model
     public function system()
     {
         return $this->belongsTo(System::class);
+    }
+
+    public function type()
+    {
+        return $this->belongsTo(Type::class);
+    }
+
+    public function priority()
+    {
+        return $this->belongsTo(Priority::class);
     }
 }

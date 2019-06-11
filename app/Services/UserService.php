@@ -25,22 +25,29 @@ class UserService
         return $this->user->all();
     }
 
-    public function crear_usuarios()
+    public function crear_usuarios($request)
     {
-        $user['name'] = Request()['name'];
-        $user['email'] = Request()['email'];
-        $user['password'] = bcrypt(Request()['password']);
+        $user['name'] = $request['name'];
+        $user['email'] = $request['email'];
+        $user['password'] = bcrypt($request['password']);
 
         $user = $this->user->create($user);
 
-        foreach (Request()['rol'] as $rol)
+        if($request['rol'])
         {
-            $user->roles()->attach($rol);
+            foreach ($request['rol'] as $rol)
+            {
+                $user->roles()->attach($rol);
+            }
         }
 
-        foreach (Request()['system'] as $sistem)
+
+        if($request['system'])
         {
-            $user->systems()->attach($sistem);
+            foreach ($request['system'] as $system)
+            {
+                $user->systems()->attach($system);
+            }
         }
 
         return $user;

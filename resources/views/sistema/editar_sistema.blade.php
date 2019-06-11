@@ -5,7 +5,7 @@
     <!-- Form horizontal -->
     <div class="panel panel-flat">
         <div class="panel-heading">
-            <h5 class="panel-title">Nuevo Sistema</h5>
+            <h5 class="panel-title">Editar sistema <code>{{ $selected_system->name ?? '' }}</code></h5>
             <div class="heading-elements">
                 <ul class="icons-list">
                     <li><a data-action="collapse"></a></li>
@@ -20,21 +20,21 @@
                     <div class="form-group">
                         <label class="control-label col-lg-2">Nombre</label>
                         <div class="col-lg-10">
-                            <input type="text" class="form-control" name="name" required>
+                            <input type="text" class="form-control" name="name" value="{{ $selected_system->name }}" required>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="control-label col-lg-2">Nombre a mostrar</label>
                         <div class="col-lg-10">
-                            <input type="text" class="form-control" name="display_name" required>
+                            <input type="text" class="form-control" name="display_name" value="{{ $selected_system->display_name }}" required>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="control-label col-lg-2">Descripcion</label>
                         <div class="col-lg-10">
-                            <input type="text" class="form-control" name="description" required>
+                            <input type="text" class="form-control" name="description" value="{{ $selected_system->description }}" required>
                         </div>
                     </div>
                 </fieldset>
@@ -47,7 +47,7 @@
                     </div>
 
                     <div class="col-xs-6 text-right">
-                        <button type="submit" class="btn btn-primary">Guardar nuevo<i class="icon-arrow-right14 position-right"></i></button>
+                        <button type="submit" class="btn btn-primary">Guardar cambios<i class="icon-arrow-right14 position-right"></i></button>
                     </div>
                 </div>
             </form>

@@ -20,6 +20,11 @@ class SystemService
         return $this->system->all();
     }
 
+    public function consultar_sistema($id)
+    {
+        return $this->system->find($id);
+    }
+
     public function crear_sistema($request)
     {
          return $this->system->create($request->toArray());

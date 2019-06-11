@@ -9,14 +9,14 @@
             <div class="heading-elements">
                 <ul class="icons-list">
                     <li><a data-action="collapse"></a></li>
-                    <li><a data-action="reload"></a></li>
-                    <li><a data-action="close"></a></li>
                 </ul>
             </div>
         </div>
 
         <div class="panel-body">
-
+            <div class="text-left">
+                <a href="{{ route('sistema.create') }}"><button type="button" class="btn btn-success">Nuevo sistema <i class="icon-add-to-list position-right"></i></button></a>
+            </div>
         </div>
 
         <table class="table datatable-show-all">
@@ -47,8 +47,8 @@
                                     </a>
 
                                     <ul class="dropdown-menu dropdown-menu-right">
-                                        <li><a href="#"><i class="icon-file-pdf"></i> Export to .pdf</a></li>
-                                        <li><a href="#"><i class="icon-file-excel"></i> Export to .csv</a></li>
+                                        <li><a href="#"><i class="icon-database-remove"></i> Dar de baja</a></li>
+                                        <li><a href="{{ route('sistema.show', $sistema->id) }}"><i class="icon-database-edit2"></i> Editar</a></li>
                                     </ul>
                                 </li>
                             </ul>

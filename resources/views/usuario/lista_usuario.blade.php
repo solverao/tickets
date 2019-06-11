@@ -16,7 +16,9 @@
         </div>
 
         <div class="panel-body">
-
+            <div class="text-left">
+                <a href="{{ route('usuario.create') }}"><button type="button" class="btn btn-success">Nuevo usuario <i class="icon-add-to-list position-right"></i></button></a>
+            </div>
         </div>
 
         <table class="table datatable-show-all">
@@ -67,8 +69,8 @@
                                         </a>
 
                                         <ul class="dropdown-menu dropdown-menu-right">
-                                            <li><a href="#"><i class="icon-database-remove"></i> Eliminar</a></li>
-                                            <li><a href="#"><i class="icon-database-edit2"></i> Editar</a></li>
+                                            <li><a href="{{ route('inicio') }}"><i class="icon-database-remove"></i> Dar de baja</a></li>
+                                            <li><a href="{{ route('usuario.show', $user->id) }}"><i class="icon-database-edit2"></i> Editar</a></li>
                                         </ul>
                                     </li>
                                 </ul>

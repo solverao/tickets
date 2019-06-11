@@ -15,16 +15,15 @@ class CreateTicketsTable extends Migration
     {
         Schema::create('tickets', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('asunto')->nullable();
             $table->integer('system_id')->unsigned();  // sobre que sistema se levanto el ticket
             $table->integer('type_id')->unsigned(); //  tipo de ticket
             $table->integer('priority_id')->unsigned();
-            $table->text('descripcion')->nullable();
-
             $table->integer('user_id')->unsigned(); //  usuario quien realizo el tikcet
             $table->integer('resolvio_id')->unsigned()->nullable(); //  usuario a quien fue asignado el tikcet
             $table->integer('status_id')->unsigned();
-            $table->dateTime('fecha_vencimiento')->nullable();
+
+            $table->string('asunto');
+            $table->text('descripcion')->nullable();
             $table->dateTime('fecha_termino')->nullable();
             $table->timestamps();
 
@@ -34,6 +33,18 @@ class CreateTicketsTable extends Migration
             $table->foreign('type_id')->references('id')->on('types');
             $table->foreign('status_id')->references('id')->on('statuses');
             $table->foreign('priority_id')->references('id')->on('priorities');
+        });
+
+        //  respuestas de tickets
+        Schema::create('answers', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('ticket_id')->unsigned();  // sobre que sistema se levanto el ticket
+            $table->integer('user_id')->unsigned();
+            $table->text('answer');
+            $table->timestamps();
+
+            $table->foreign('ticket_id')->references('id')->on('tickets');
+            $table->foreign('user_id')->references('id')->on('users');
         });
 
         //  Tickets asignados

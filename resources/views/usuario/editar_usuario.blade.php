@@ -5,7 +5,7 @@
     <!-- Form horizontal -->
     <div class="panel panel-flat">
         <div class="panel-heading">
-            <h5 class="panel-title">Nuevo Usuario</h5>
+            <h5 class="panel-title">Editar Usuario <code>{{ $user->name ?? 'No encontrado' }}</code></h5>
             <div class="heading-elements">
                 <ul class="icons-list">
                     <li><a data-action="collapse"></a></li>
@@ -22,32 +22,25 @@
                     <div class="form-group">
                         <label class="control-label col-lg-2">Nombre</label>
                         <div class="col-lg-10">
-                            <input type="text" class="form-control" name="name" required>
+                            <input type="text" class="form-control" name="name" value="{{ $user->name }}" required>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="control-label col-lg-2">Correo electronico</label>
                         <div class="col-lg-10">
-                            <input type="text" class="form-control" name="email" required>
+                            <input type="text" class="form-control" name="email" value="{{ $user->email }}" required>
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label class="control-label col-lg-2">Contraseña</label>
-                        <div class="col-lg-10">
-                            <input type="text" class="form-control" name="password" required>
-                        </div>
-                    </div>
-
-                    <!-- Default multiselect -->
+                <!-- Default multiselect -->
                     <div class="form-group">
                         <label class="control-label col-lg-2">Asignar sistemas</label>
                         <div class="multi-select-full col-lg-10">
-                            <select class="multiselect" multiple="multiple" name="system[]">
+                            <select class="multiselect" multiple="multiple" name="system[]" required>
                                 @if($sistemas)
                                     @foreach($sistemas as $sistema)
-                                        <option  value="{{ $sistema->id }}">{{ $sistema->name }}</option>
+                                        <option  value="{{ $sistema->id }}" {{ selected($sistema->name, $user->systems, 'name') }}>{{ $sistema->name }}</option>
                                     @endforeach
                                 @endif
                             </select>
@@ -57,10 +50,10 @@
                     <div class="form-group">
                         <label class="control-label col-lg-2">Asignar roles</label>
                         <div class="multi-select-full col-lg-10">
-                            <select class="multiselect" multiple="multiple" name="rol[]">
+                            <select class="multiselect" multiple="multiple" name="rol[]" required>
                                 @if($roles)
                                     @foreach($roles as $role)
-                                        <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                        <option value="{{ $role->id }}" {{ selected($role->name, $user->roles, 'name') }}>{{ $role->name }}</option>
                                     @endforeach
                                 @endif
                             </select>
@@ -78,7 +71,8 @@
                     </div>
 
                     <div class="col-xs-6 text-right">
-                        <button type="submit" class="btn btn-primary">Guardar nuevo<i class="icon-arrow-right14 position-right"></i></button>
+                        <button type="submit" class="btn btn-default">Resetear contraseña <i class="icon-reset position-right"></i></button>
+                        <button type="submit" class="btn btn-primary">Guardar cambios <i class="icon-arrow-right14 position-right"></i></button>
                     </div>
                 </div>
             </form>

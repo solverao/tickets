@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Services\TicketService;
+use App\Services\RolService;
+use App\Services\SystemService;
+use App\Services\UserService;
 
-class TicketController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +16,9 @@ class TicketController extends Controller
      */
     public function index()
     {
-        $ticket = new TicketService();
-        $tickets = $ticket->consultar_tickets(Request());
-        $usuarios = $ticket->consultar_usuarios();
-        return view('ticket.lista_ticket', compact('tickets', 'usuarios'));
+        $user = new UserService();
+        $users = $user->consultar_usuarios();
+        return view('usuario.lista_usuario', compact('users'));
     }
 
     /**
@@ -25,11 +26,13 @@ class TicketController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create()
     {
-        $ticket = new TicketService();
-        $catalogos = $ticket->consultar_catalogos($request);
-        return view('ticket.alta_ticket', compact('catalogos'));
+        $sistema = new SystemService();
+        $roles = new RolService();
+        $sistemas = $sistema->consultar_sistemas();
+        $roles = $roles->consultar_roles();
+        return view('usuario.alta_usuario', compact('sistemas', 'roles'));
     }
 
     /**
@@ -40,11 +43,10 @@ class TicketController extends Controller
      */
     public function store(Request $request)
     {
-        $ticket = new TicketService();
-        $ticket->guardar_ticket($request);
-        $tickets = $ticket->consultar_tickets($request);
-        $usuarios = $ticket->consultar_usuarios();
-        return view('ticket.lista_ticket', compact('tickets', 'usuarios'));
+        $user = new UserService();
+        $user->crear_usuarios($request);
+        $users = $user->consultar_usuarios();
+        return view('usuario.lista_usuario', compact('users'));
     }
 
     /**
@@ -55,9 +57,13 @@ class TicketController extends Controller
      */
     public function show($id)
     {
-        $ticket = new TicketService($id);
-        $selected_ticket = $ticket->consultar_ticket($id);
-        return view('ticket.mostrar_ticket', compact('selected_ticket'));
+        $sistema = new SystemService();
+        $roles = new RolService();
+        $user = new UserService();
+        $sistemas = $sistema->consultar_sistemas();
+        $roles = $roles->consultar_roles();
+        $user = $user->consultar_usuario($id);
+        return view('usuario.editar_usuario', compact('sistemas', 'roles', 'user'));
     }
 
     /**
@@ -68,7 +74,7 @@ class TicketController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('usuario.asignar_usuario');
     }
 
     /**

@@ -29,10 +29,12 @@ class TicketService
         $this->user = new UserRepositorie($this->app);
     }
 
-    public function consultar_catalogos()
+    public function consultar_catalogos($request)
     {
+        $sistems_user = $request->user()->systems->pluck('id')->toArray();  //  valida los tickets de los sistemas asignados al usuario
+
         $catalogos['priority'] = $this->priority->all();
-        $catalogos['system'] = $this->system->all();
+        $catalogos['system'] = $this->system->findAllwherein('id', $sistems_user);
         $catalogos['type'] = $this->type->all();
 
         if($catalogos)
@@ -48,11 +50,11 @@ class TicketService
         return $catalogos;
     }
 
-    public function guardar_ticket()
+    public function guardar_ticket($request)
     {
-        Request()['user_id'] = Request()->user()->id;
-        Request()['status_id'] = 1;
-        return $this->ticket->create(Request()->toArray());
+        $request['user_id'] = $request->user()->id;
+        $request['status_id'] = 1;
+        return $this->ticket->create($request->toArray());
     }
 
     public function consultar_usuarios()
@@ -64,5 +66,10 @@ class TicketService
     {
         $sistems_user = $request->user()->systems->pluck('id')->toArray();  //  valida los tickets de los sistemas asignados al usuario
         return $this->ticket->findAllwherein('system_id', $sistems_user);
+    }
+
+    public function consultar_ticket($id)
+    {
+        return $this->ticket->find($id);
     }
 }
