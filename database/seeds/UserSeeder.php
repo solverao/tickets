@@ -12,7 +12,9 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        User::create(['name' => 'admin',
+        User::create([
+            'active' => true,
+            'name' => 'admin',
             'email' => 'admin@mail.com',
             'password' => bcrypt('123456'),
             'created_at' => new DateTime,

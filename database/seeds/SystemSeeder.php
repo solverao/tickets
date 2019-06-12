@@ -13,6 +13,7 @@ class SystemSeeder extends Seeder
     public function run()
     {
         System::create([
+            'active' => true,
             'name' => 'TAXI',
             'display_name' => 'TAXI',
             'description' => 'Sistema 1',
@@ -20,6 +21,7 @@ class SystemSeeder extends Seeder
             'updated_at' => new DateTime]);
 
         System::create([
+            'active' => true,
             'name' => 'REVISTA',
             'display_name' => 'REVISTA',
             'description' => 'Sistema 2',
@@ -27,6 +29,7 @@ class SystemSeeder extends Seeder
             'updated_at' => new DateTime]);
 
         System::create([
+            'active' => true,
             'name' => 'DOCUMENTAL',
             'display_name' => 'DOCUMENTAL',
             'description' => 'Sistema 3',

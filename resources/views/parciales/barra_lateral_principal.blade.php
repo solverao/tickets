@@ -1,5 +1,5 @@
 <!-- Main sidebar -->
-<div class="sidebar sidebar-default">
+<div class="sidebar sidebar-main sidebar-default">
     <div class="sidebar-content">
 
         <!-- Main navigation -->

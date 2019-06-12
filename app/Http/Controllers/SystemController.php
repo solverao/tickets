@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\SystemService;
+use Illuminate\Support\Facades\Redirect;
 
 class SystemController extends Controller
 {
@@ -76,7 +77,10 @@ class SystemController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $sistema = new SystemService($id);
+        $selected_system = $sistema->editar_sistema($request, $id);
+        $sistemas = $sistema->consultar_sistemas();
+        return view('sistema.lista_sistema', compact('sistemas'));
     }
 
     /**

@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('encabezado_item')
+    <li class="active">lista de tickets</li>
+@endsection
+
 @section('content')
 
     <!-- Page length options -->
@@ -72,9 +76,9 @@
 
 @section('theme_js_files')
     <!-- Theme JS files -->
-    <script src="{{ asset('assets/js/plugins/tables/datatables/datatables.min.js') }}"></script>
-    <script src="{{ asset('assets/js/pages/datatables_advanced.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/forms/styling/uniform.min.js') }}"></script>
     <script src="{{ asset('assets/js/core/app.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/tables/datatables/datatables.min.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/datatables_advanced.js') }}"></script>
     <!-- /theme JS files -->
 @endsection

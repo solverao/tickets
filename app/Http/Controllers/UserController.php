@@ -86,7 +86,10 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = new UserService();
+        $res = $user->editar_usuarios($request, $id);
+        $users = $user->consultar_usuarios();
+        return view('usuario.lista_usuario', compact('users'));
     }
 
     /**

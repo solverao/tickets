@@ -13,6 +13,7 @@ class TypeSeeder extends Seeder
     public function run()
     {
         Type::create([
+            'active' => true,
             'name' => 'FAIL',
             'display_name' => 'FALLA',
             'description' => 'Falla critica',
@@ -20,6 +21,7 @@ class TypeSeeder extends Seeder
             'updated_at' => new DateTime]);
 
         Type::create([
+            'active' => true,
             'name' => 'NOTIFICATION',
             'display_name' => 'NOTIFICACION',
             'description' => 'Falla no critica',

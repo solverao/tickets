@@ -20,22 +20,71 @@
                 <li>Sistema: <span class="text-semibold">{{ $selected_ticket->system->display_name }}</span></li>
                 <li>Tipo de ticket: <span class="text-semibold">{{ $selected_ticket->type->display_name }}</span></li>
                 <li>Prioridad: <span class="text-semibold">{{ $selected_ticket->priority->display_name  }}</span></li>
+                <li>Fecha de creacion: <span class="text-semibold">{{ $selected_ticket->created_at  }}</span></li>
+                <li>Realizado por: <span class="text-semibold">{{ $selected_ticket->user->name  }}</span></li>
                 <li>
                     <blockquote>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h6 class="panel-title">Descripcion completa</h6>
-                            <div class="heading-elements">
-                                <ul class="icons-list">
-                                    <li><a data-action="collapse"></a></li>
-                                </ul>
-                            </div>
-                        </div>
+                        <ul class="media-list media-list-linked">
 
-                        <div class="panel-body">
-                            {!! $selected_ticket->descripcion !!}
-                        </div>
-                    </div>
+
+                            <li class="media panel-flat border-left-lg border-left-info">
+                                <div class="media-link cursor-pointer" data-toggle="collapse" data-target="#descripcion">
+                                    <div class="media-body">
+                                        <div class="media-heading text-semibold">Descripcion completa</div>
+                                    </div>
+                                    <div class="media-right media-middle text-nowrap">
+                                        <i class="icon-menu7 display-block"></i>
+                                    </div>
+                                </div>
+
+                                <div class="collapse" id="descripcion">
+                                    <div class="contact-details">
+                                        {!! $selected_ticket->descripcion !!}
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="media-header"><code><h5>Respuestas</h5></code></li>
+
+                            <li class="media panel-flat border-left-lg border-left-danger">
+                                <div class="media-link cursor-pointer" data-toggle="collapse" data-target="#respuesta">
+                                    <div class="media-body">
+                                        <div class="media-heading text-semibold">NOMBRE</div>
+                                        <span class="text-muted">FECHA</span>
+                                    </div>
+                                    <div class="media-right media-middle text-nowrap">
+                                        <i class="icon-menu7 display-block"></i>
+                                    </div>
+                                </div>
+
+                                <div class="collapse" id="respuesta">
+                                    <div class="contact-details">
+
+
+
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="media panel-flat border-left-lg border-left-danger">
+                                <div class="media-link cursor-pointer" data-toggle="collapse" data-target="#respuesta">
+                                    <div class="media-body">
+                                        <div class="media-heading text-semibold">NOMBRE</div>
+                                        <span class="text-muted">FECHA</span>
+                                    </div>
+                                    <div class="media-right media-middle text-nowrap">
+                                        <i class="icon-menu7 display-block"></i>
+                                    </div>
+                                </div>
+
+                                <div class="collapse" id="respuesta">
+                                    <div class="contact-details">
+
+
+
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
                     </blockquote>
                 </li>
             </ul>
@@ -48,8 +97,10 @@
                 </div>
 
                 <div class="col-xs-6 text-right">
-                    <button type="submit" class="btn btn-primary btn-labeled btn-labeled-right">
+                    <a href="{{ route('inicio') }}">
+                    <button type="button" class="btn btn-primary btn-labeled btn-labeled-right">
                         <b><i class="icon-circle-right2"></i></b> Responder</button>
+                    </a>
                 </div>
             </div>
 
@@ -60,32 +111,17 @@
 @endsection
 
 @section('theme_js_files')
-    <!-- Theme JS files -->
-    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/forms/selects/select2.min.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/editors/summernote/summernote.min.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/editor_summernote.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/forms/styling/uniform.min.js') }}"></script>
+    <script src="{{ asset('assets/js/core/app.js') }}"></script>
 
     <script src="{{ asset('assets/js/plugins/forms/styling/uniform.min.js') }}"></script>
-    <script src="{{ asset('assets/js/pages/form_inputs.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/notifications/pnotify.min.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/forms/selects/bootstrap_multiselect.js') }}"></script>
 
-    <script src="{{ asset('assets/js/core/app.js') }}"></script>
-    <script src="{{ asset('assets/js/pages/editor_ckeditor.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/form_multiselect.js') }}"></script>
 
     <script src="{{ asset('assets/js/plugins/ui/ripple.min.js') }}"></script>
-    <!-- /theme JS files -->
-
-
-    <script src="{{ asset('assets/js/plugins/notifications/jgrowl.min.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/ui/moment/moment.min.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/pickers/daterangepicker.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/pickers/anytime.min.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/pickers/pickadate/picker.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/pickers/pickadate/picker.date.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/pickers/pickadate/picker.time.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/pickers/pickadate/legacy.js') }}"></script>
-
-    <script src="{{ asset('assets/js/pages/picker_date.js') }}"></script>
-
-    <script src="{{ asset('assets/js/plugins/forms/styling/uniform.min.js') }}"></script>
-    <script src="{{ asset('assets/js/core/app.js') }}"></script>
 @endsection
 

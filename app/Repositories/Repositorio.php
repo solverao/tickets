@@ -77,7 +77,7 @@ abstract class Repositorio implements RepositorioInterfaz
      */
     public function create(array $data)
     {
-        $data = array_map('mb_strtoupper', $data);
+        //$data = array_map('mb_strtoupper', $data);
         return $this->model->create($data);
     }
 
@@ -89,7 +89,7 @@ abstract class Repositorio implements RepositorioInterfaz
      */
     public function update(array $data, $id, $attribute = "id")
     {
-        $data = array_map('mb_strtoupper', $data);
+        //$data = array_map('mb_strtoupper', $data);
         $u = $this->model->where($attribute, '=', $id)->update($data);
 
         if ($u == 1) {

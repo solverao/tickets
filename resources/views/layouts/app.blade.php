@@ -43,10 +43,6 @@
         <!-- Contenido principal -->
         <div class="content-wrapper">
 
-            <!-- Encabezado_de pagina -->
-            @include('parciales.encabezado_pagina')
-            <!-- /Encabezado_de pagina -->
-
             <!-- Area de contenido -->
             <div class="content">
 

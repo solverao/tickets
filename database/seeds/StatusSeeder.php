@@ -13,6 +13,7 @@ class StatusSeeder extends Seeder
     public function run()
     {
         Status::create([
+            'active' => true,
             'name' => 'PENDING',
             'display_name' => 'PENDIENTE',
             'description' => 'Sin procesar',
@@ -20,6 +21,7 @@ class StatusSeeder extends Seeder
             'updated_at' => new DateTime]);
 
         Status::create([
+            'active' => true,
             'name' => 'SUSPENDED',
             'display_name' => 'SUSPENDIDO',
             'description' => 'Aun no se resuleve pero no afecta el tiempo transcurrido',
@@ -27,6 +29,7 @@ class StatusSeeder extends Seeder
             'updated_at' => new DateTime]);
 
         Status::create([
+            'active' => true,
             'name' => 'FAILED',
             'display_name' => 'FALLIDO',
             'description' => 'Sin solucion',
@@ -34,6 +37,7 @@ class StatusSeeder extends Seeder
             'updated_at' => new DateTime]);
 
         Status::create([
+            'active' => true,
             'name' => 'SUCCESSFUL',
             'display_name' => 'EXITOSO',
             'description' => 'Se completo correctamente y se recibio respuesta',
@@ -41,6 +45,7 @@ class StatusSeeder extends Seeder
             'updated_at' => new DateTime]);
 
         Status::create([
+            'active' => true,
             'name' => 'CLOSED',
             'display_name' => 'CERRADO',
             'description' => 'Se cerro sin confirmacion de exitoso',

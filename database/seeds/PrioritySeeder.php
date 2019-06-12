@@ -13,6 +13,7 @@ class PrioritySeeder extends Seeder
     public function run()
     {
         Priority::create([
+            'active' => true,
             'name' => 'LOW',
             'display_name' => 'BAJA',
             'description' => 'Prioridad baja puede esperar',
@@ -20,6 +21,7 @@ class PrioritySeeder extends Seeder
             'updated_at' => new DateTime]);
 
         Priority::create([
+            'active' => true,
             'name' => 'NORMAL',
             'display_name' => 'NORMAL',
             'description' => 'Prioridad normal puede esperar',
@@ -27,6 +29,7 @@ class PrioritySeeder extends Seeder
             'updated_at' => new DateTime]);
 
         Priority::create([
+            'active' => true,
             'name' => 'HIGH',
             'display_name' => 'ALTA',
             'description' => 'Prioridad alta',
@@ -34,6 +37,7 @@ class PrioritySeeder extends Seeder
             'updated_at' => new DateTime]);
 
         Priority::create([
+            'active' => true,
             'name' => 'URGENT',
             'display_name' => 'URGENTE',
             'description' => 'Prioridad urgente',

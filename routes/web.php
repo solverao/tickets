@@ -11,13 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('inicio');
 
 Auth::routes();
 
 Route::group(['middleware' => ['auth']], function() {
+    Route::view('/', 'welcome')->name('inicio');
     Route::get('/home', 'HomeController@index')->name('home');
 
     Route::resource('ticket', 'TicketController')->middleware('role:realizar');

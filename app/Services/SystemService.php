@@ -27,6 +27,15 @@ class SystemService
 
     public function crear_sistema($request)
     {
+        $request['active'] = true;
          return $this->system->create($request->toArray());
+    }
+
+    public function editar_sistema($request, $id)
+    {
+        $data['name'] = $request->name;
+        $data['display_name'] = $request->display_name;
+        $data['description'] = $request->description;
+        return $this->system->update($data, $id);
     }
 }

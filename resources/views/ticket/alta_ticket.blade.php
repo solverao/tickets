@@ -82,9 +82,7 @@
                         <div class="col-lg-12">
 
                             <label class="control-label">Descripcion completa</label>
-                            <div>
-                                <textarea name="descripcion" id="editor-full" rows="4" cols="4" required></textarea>
-                            </div>
+                            <textarea id="summernote" name="descripcion" class="summernote"></textarea>
                         </div>
                     </div>
 
@@ -121,32 +119,17 @@
 @endsection
 
 @section('theme_js_files')
-    <!-- Theme JS files -->
-    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/forms/selects/select2.min.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/editors/summernote/summernote.min.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/editor_summernote.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/forms/styling/uniform.min.js') }}"></script>
+    <script src="{{ asset('assets/js/core/app.js') }}"></script>
 
     <script src="{{ asset('assets/js/plugins/forms/styling/uniform.min.js') }}"></script>
-    <script src="{{ asset('assets/js/pages/form_inputs.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/notifications/pnotify.min.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/forms/selects/bootstrap_multiselect.js') }}"></script>
 
-    <script src="{{ asset('assets/js/core/app.js') }}"></script>
-    <script src="{{ asset('assets/js/pages/editor_ckeditor.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/form_multiselect.js') }}"></script>
 
     <script src="{{ asset('assets/js/plugins/ui/ripple.min.js') }}"></script>
-    <!-- /theme JS files -->
-
-
-    <script src="{{ asset('assets/js/plugins/notifications/jgrowl.min.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/ui/moment/moment.min.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/pickers/daterangepicker.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/pickers/anytime.min.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/pickers/pickadate/picker.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/pickers/pickadate/picker.date.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/pickers/pickadate/picker.time.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/pickers/pickadate/legacy.js') }}"></script>
-
-    <script src="{{ asset('assets/js/pages/picker_date.js') }}"></script>
-
-    <script src="{{ asset('assets/js/plugins/forms/styling/uniform.min.js') }}"></script>
-    <script src="{{ asset('assets/js/core/app.js') }}"></script>
 @endsection
 

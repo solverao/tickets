@@ -14,8 +14,9 @@
         </div>
 
         <div class="panel-body">
-            <form class="form-horizontal" method="POST" action="{{ route('usuario.store') }}" autocomplete="off">
+            <form class="form-horizontal" method="POST" action="{{ route('usuario.update', $user->id) }}" autocomplete="off">
                 {{ csrf_field() }}
+                {{ method_field('PATCH') }}
                 <fieldset class="content-group">
 
 

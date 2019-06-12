@@ -27,29 +27,30 @@ class UserService
 
     public function crear_usuarios($request)
     {
+        $user['active'] = true;
         $user['name'] = $request['name'];
         $user['email'] = $request['email'];
         $user['password'] = bcrypt($request['password']);
 
         $user = $this->user->create($user);
 
-        if($request['rol'])
-        {
-            foreach ($request['rol'] as $rol)
-            {
-                $user->roles()->attach($rol);
-            }
-        }
-
-
-        if($request['system'])
-        {
-            foreach ($request['system'] as $system)
-            {
-                $user->systems()->attach($system);
-            }
-        }
+        $user->roles()->sync($request['rol']);
+        $user->systems()->sync($request['system']);
 
         return $user;
+    }
+
+    public function editar_usuarios($request, $id)
+    {
+        $data['name'] = $request['name'];
+        $data['email'] = $request['email'];
+
+        $user = $this->user->find($id);
+        $user->roles()->sync($request['rol']);
+        $user->systems()->sync($request['system']);
+
+        return $this->user->update($data, $id);
+
+
     }
 }
