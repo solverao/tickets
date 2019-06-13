@@ -7,10 +7,6 @@
         <div class="panel-heading">
             <h5 class="panel-title">Ticket <code>{{ $selected_ticket->id ?? '' }}</code>
                 <small>Status: <span class="{{ valStatus($selected_ticket->status->display_name) }}">{{ $selected_ticket->status->display_name }}</span> </small></h5>
-            <div class="heading-elements">
-                <ul class="icons-list">
-                </ul>
-            </div>
         </div>
 
         <div class="panel-body">
@@ -25,8 +21,6 @@
                 <li>
                     <blockquote>
                         <ul class="media-list media-list-linked">
-
-
                             <li class="media panel-flat border-left-lg border-left-info">
                                 <div class="media-link cursor-pointer" data-toggle="collapse" data-target="#descripcion">
                                     <div class="media-body">
@@ -38,52 +32,55 @@
                                 </div>
 
                                 <div class="collapse" id="descripcion">
-                                    <div class="contact-details">
+                                     <div class="contact-details">
                                         {!! $selected_ticket->descripcion !!}
-                                    </div>
+
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <ul>
+                                                    @if($files)
+                                                        @foreach($files as $file)
+                                                            <li>
+                                                                <a href="{{url('/Archivos_adjuntos/'.$file)}}"  target="_blank">{{$file}}</a>
+                                                            </li>
+                                                         @endforeach
+                                                    @endif
+                                                 </ul>
+                                            </div>
+                                        </div>
+                                     </div>
                                 </div>
                             </li>
 
                             <li class="media-header"><code><h5>Respuestas</h5></code></li>
 
-                            <li class="media panel-flat border-left-lg border-left-danger">
-                                <div class="media-link cursor-pointer" data-toggle="collapse" data-target="#respuesta">
-                                    <div class="media-body">
-                                        <div class="media-heading text-semibold">NOMBRE</div>
-                                        <span class="text-muted">FECHA</span>
-                                    </div>
-                                    <div class="media-right media-middle text-nowrap">
-                                        <i class="icon-menu7 display-block"></i>
-                                    </div>
-                                </div>
+                            @if($selected_ticket->answers)
+                                @forelse($selected_ticket->answers as $answer)
+                                    <li class="media panel-flat border-left-lg border-left-danger">
+                                        <div class="media-link cursor-pointer" data-toggle="collapse" data-target="#{{$answer->id}}">
+                                            <div class="media-body">
+                                                <div class="media-heading text-semibold">{{ $answer->user->name }}</div>
+                                                <span class="text-muted">{{ $answer->created_at }}</span>
+                                            </div>
+                                            <div class="media-right media-middle text-nowrap">
+                                                <i class="icon-menu7 display-block"></i>
+                                            </div>
+                                        </div>
 
-                                <div class="collapse" id="respuesta">
-                                    <div class="contact-details">
-
-
-
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="media panel-flat border-left-lg border-left-danger">
-                                <div class="media-link cursor-pointer" data-toggle="collapse" data-target="#respuesta">
-                                    <div class="media-body">
-                                        <div class="media-heading text-semibold">NOMBRE</div>
-                                        <span class="text-muted">FECHA</span>
-                                    </div>
-                                    <div class="media-right media-middle text-nowrap">
-                                        <i class="icon-menu7 display-block"></i>
-                                    </div>
-                                </div>
-
-                                <div class="collapse" id="respuesta">
-                                    <div class="contact-details">
-
-
-
-                                    </div>
-                                </div>
-                            </li>
+                                        <div class="collapse" id="{{$answer->id}}">
+                                            <div class="contact-details">
+                                                {!! $answer->answer !!}
+                                            </div>
+                                        </div>
+                                    </li>
+                                    @empty
+                                    <li class="media panel-flat border-left-lg border-left-danger">
+                                        <div class="contact-details">
+                                        <span class="text-muted">Sin respuestas</span>
+                                        </div>
+                                    </li>
+                                @endforelse
+                            @endif
                         </ul>
                     </blockquote>
                 </li>
@@ -97,7 +94,7 @@
                 </div>
 
                 <div class="col-xs-6 text-right">
-                    <a href="{{ route('inicio') }}">
+                    <a href="{{ route('ticket.edit', $selected_ticket->id) }}">
                     <button type="button" class="btn btn-primary btn-labeled btn-labeled-right">
                         <b><i class="icon-circle-right2"></i></b> Responder</button>
                     </a>

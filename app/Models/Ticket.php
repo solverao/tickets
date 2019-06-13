@@ -15,6 +15,11 @@ class Ticket extends Model
         'resolvio_id', 'status_id', 'fecha_vencimiento', 'fecha_termino',
     ];
 
+    public function answers()
+    {
+        return $this->hasMany(Answer::class);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);

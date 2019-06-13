@@ -2,20 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Services\TicketService;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Show the application dashboard.
      *
@@ -23,6 +13,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('layouts.app');
+        $ticket = new TicketService();
+        $tickets['todo'] = $ticket->consultar_todo();
+        $tickets['systems'] = $ticket->consultar_resultado('system_id', 1);
+        $tickets['documental'] = $ticket->consultar_resultado('system_id', 3);
+        return view('welcome', compact('tickets'));
     }
 }

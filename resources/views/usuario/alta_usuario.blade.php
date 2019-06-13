@@ -36,7 +36,7 @@
                     <div class="form-group">
                         <label class="control-label col-lg-2">Contraseña</label>
                         <div class="col-lg-10">
-                            <input type="text" class="form-control" name="password" required>
+                            <input type="password" class="form-control" name="password" required>
                         </div>
                     </div>
 

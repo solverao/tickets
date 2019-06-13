@@ -48,6 +48,12 @@ return [
             'root' => storage_path('app'),
         ],
 
+        'Archivos_adjuntos' => [
+            'driver' => 'local',
+            'root' => public_path(env('DIR_ARCHIVOS')),
+            'visibility' => 'public',
+        ],
+
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),

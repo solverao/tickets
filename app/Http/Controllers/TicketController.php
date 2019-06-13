@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\AnswerService;
+use App\Services\CatalogsService;
+use App\Services\UserService;
 use Illuminate\Http\Request;
 use App\Services\TicketService;
 
@@ -15,9 +18,9 @@ class TicketController extends Controller
     public function index()
     {
         $ticket = new TicketService();
+        $usuario = new UserService();
         $tickets = $ticket->consultar_tickets(Request());
-        $usuarios = $ticket->consultar_usuarios();
-        return view('ticket.lista_ticket', compact('tickets', 'usuarios'));
+        return view('ticket.lista_ticket', compact('tickets'));
     }
 
     /**
@@ -27,8 +30,8 @@ class TicketController extends Controller
      */
     public function create(Request $request)
     {
-        $ticket = new TicketService();
-        $catalogos = $ticket->consultar_catalogos($request);
+        $catalogo = new CatalogsService();
+        $catalogos = $catalogo->consultar_catalogos($request);
         return view('ticket.alta_ticket', compact('catalogos'));
     }
 
@@ -41,10 +44,11 @@ class TicketController extends Controller
     public function store(Request $request)
     {
         $ticket = new TicketService();
-        $ticket->guardar_ticket($request);
+        $newTicket = $ticket->guardar_ticket($request);
+        $ticket->adjuntar_archivos($request, $newTicket->id);
+
         $tickets = $ticket->consultar_tickets($request);
-        $usuarios = $ticket->consultar_usuarios();
-        return view('ticket.lista_ticket', compact('tickets', 'usuarios'));
+        return view('ticket.lista_ticket', compact('tickets'));
     }
 
     /**
@@ -55,9 +59,10 @@ class TicketController extends Controller
      */
     public function show($id)
     {
-        $ticket = new TicketService($id);
+        $ticket = new TicketService();
         $selected_ticket = $ticket->consultar_ticket($id);
-        return view('ticket.mostrar_ticket', compact('selected_ticket'));
+        $files = $ticket->consultar_adjuntos($id);
+        return view('ticket.mostrar_ticket', compact('selected_ticket', 'files'));
     }
 
     /**
@@ -68,7 +73,9 @@ class TicketController extends Controller
      */
     public function edit($id)
     {
-        //
+        $ticket = new TicketService();
+        $selected_ticket = $ticket->consultar_ticket($id);
+        return view('ticket.respuesta_ticket', compact('selected_ticket'));
     }
 
     /**
@@ -80,7 +87,12 @@ class TicketController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $ticket = new TicketService();
+        $answer = new AnswerService();
+        //$ticket = $ticket->consultar_ticket($id);
+        $res = $answer->guardar_respuesta($request, $id);
+        $tickets = $ticket->consultar_tickets(Request());
+        return view('ticket.lista_ticket', compact('tickets'));
     }
 
     /**

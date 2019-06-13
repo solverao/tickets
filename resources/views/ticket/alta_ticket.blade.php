@@ -6,14 +6,10 @@
 <div class="panel panel-flat">
     <div class="panel-heading">
         <h5 class="panel-title">Levantar Nuevo Ticket</h5>
-        <div class="heading-elements">
-            <ul class="icons-list">
-            </ul>
-        </div>
     </div>
 
     <div class="panel-body">
-        <form class="form-horizontal" method="POST" action="{{ route('ticket.store') }}">
+        <form class="form-horizontal" method="POST" action="{{ route('ticket.store') }}" enctype="multipart/form-data">
             {{ csrf_field() }}
             <fieldset class="content-group">
 
@@ -86,13 +82,23 @@
                         </div>
                     </div>
 
-                    <div class="row">
+{{--                    <div class="row">
                         <div class="col-xs-6">
                             <ul class="icons-list icons-list-extended mt-10">
+                                <input type="file" class="file-styled-primary">
                                 <li><a href="#" data-popup="tooltip" title="Adjuntar PDF" data-container="body"><i class="icon-file-pdf"></i></a></li>
                                 <li><a href="#" data-popup="tooltip" title="Adjuntar WORD" data-container="body"><i class="icon-file-word"></i></a></li>
                                 <li><a href="#" data-popup="tooltip" title="Adjuntar EXCEL" data-container="body"><i class="icon-file-excel"></i></a></li>
                             </ul>
+                        </div>
+                    </div>--}}
+
+                    <div class="form-group">
+                        <div class="col-lg-12">
+                            <label class="control-label">Adjuntar archivos</label>
+                            <div>
+                                <input type="file" class="file-styled-primary" name="files[]" multiple="multiple"/>
+                            </div>
                         </div>
                     </div>
                 </blockquote>
@@ -131,5 +137,8 @@
     <script src="{{ asset('assets/js/pages/form_multiselect.js') }}"></script>
 
     <script src="{{ asset('assets/js/plugins/ui/ripple.min.js') }}"></script>
+
+    <script src="{{ asset('assets/js/plugins/forms/styling/uniform.min.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/form_inputs.js') }}"></script>
 @endsection
 

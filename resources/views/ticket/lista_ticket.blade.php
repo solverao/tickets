@@ -13,8 +13,6 @@
             <div class="heading-elements">
                 <ul class="icons-list">
                     <li><a data-action="collapse"></a></li>
-                    <li><a data-action="reload"></a></li>
-                    <li><a data-action="close"></a></li>
                 </ul>
             </div>
         </div>
@@ -42,11 +40,18 @@
                 @forelse($tickets as $ticket)
                     <tr>
                         <td>{{ $ticket->id }}</td>
-                        <td>{{ $ticket->asunto }}</td>
+                        <td>
+                            <a href="{{ route('ticket.show', $ticket->id) }}">
+                                <span class="label label-danger">{{ $ticket->answers->count() }}</span> {{ $ticket->asunto }}
+                            </a>
+                        </td>
+
                         <td>{{ $ticket->user->name }}</td>
                         <td>{{ $ticket->system->name }}</td>
                         <td>{{ $ticket->created_at }}</td>
-                        <td><span class="{{ valStatus($ticket->status->display_name) }}">{{ $ticket->status->display_name }}</span></td>
+                        <td>
+                            <span class="{{ valStatus($ticket->status->display_name) }}">{{ $ticket->status->display_name }}</span>
+                        </td>
                         <td class="text-center">
                             <ul class="icons-list">
                                 <li class="dropdown">
@@ -55,7 +60,7 @@
                                     </a>
 
                                     <ul class="dropdown-menu dropdown-menu-right">
-                                        <li><a href="#"><i class="icon-database-remove"></i> Dar de baja</a></li>
+                                        <li><a href="#"><i class="icon-check"></i> Resolucion</a></li>
                                         <li><a href="{{ route('ticket.show', $ticket->id) }}"><i class="icon-database-check"></i> Ver</a></li>
                                     </ul>
                                 </li>
