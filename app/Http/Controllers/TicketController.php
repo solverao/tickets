@@ -10,6 +10,11 @@ use App\Services\TicketService;
 
 class TicketController extends Controller
 {
+    public function __construct()
+
+    {
+
+    }
     /**
      * Display a listing of the resource.
      *
@@ -17,6 +22,7 @@ class TicketController extends Controller
      */
     public function index()
     {
+
         $ticket = new TicketService();
         $usuario = new UserService();
         $tickets = $ticket->consultar_tickets(Request());

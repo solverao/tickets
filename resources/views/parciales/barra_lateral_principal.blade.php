@@ -17,7 +17,7 @@
                         </ul>
                     </li>
                     @endrole
-                    @role('realizar')
+                    @role(['realizar', 'contestar'])
                     <li>
                         <a href="#"><i class="icon-ticket"></i> <span>Ticket</span></a>
                         <ul>

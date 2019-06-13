@@ -17,11 +17,13 @@
             </div>
         </div>
 
+        @role('realizar')
         <div class="panel-body">
             <div class="text-left">
                 <a href="{{ route('ticket.create') }}"><button type="button" class="btn btn-success">Nuevo ticket <i class="icon-add-to-list position-right"></i></button></a>
             </div>
         </div>
+        @endrole
 
         <table class="table datatable-show-all">
             <thead>
@@ -60,7 +62,7 @@
                                     </a>
 
                                     <ul class="dropdown-menu dropdown-menu-right">
-                                        <li><a href="#"><i class="icon-check"></i> Resolucion</a></li>
+                                        {{--<li><a href="#"><i class="icon-check"></i> Resolucion</a></li>--}}
                                         <li><a href="{{ route('ticket.show', $ticket->id) }}"><i class="icon-database-check"></i> Ver</a></li>
                                     </ul>
                                 </li>

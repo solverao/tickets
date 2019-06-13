@@ -17,9 +17,10 @@ Auth::routes();
 Route::group(['middleware' => ['auth']], function() {
     Route::get('/', 'HomeController@index')->name('inicio');
 
-    Route::resource('ticket', 'TicketController')->middleware('role:realizar');
+    Route::resource('ticket', 'TicketController');
     Route::resource('usuario', 'UserController')->middleware('role:admin');
     Route::resource('sistema', 'SystemController')->middleware('role:admin');
+
 });
 
 

@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Repositories\TicketRepositorie;
 use Illuminate\Container\Container as App;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Exception;
 
@@ -27,7 +28,21 @@ class TicketService
     public function consultar_tickets($request)
     {
         $sistems_user = $request->user()->systems->pluck('id')->toArray();  //  valida los tickets de los sistemas asignados al usuario
-        return $this->ticket->findAllwherein('system_id', $sistems_user);
+        $user = Auth::user();
+     
+        if($request->user()->hasRole('realizar'))
+        {
+            return $this->ticket->findAllWheres(['system_id' => $sistems_user, 'user_id' => $user->id]);
+        }
+        else if($request->user()->hasRole('contestar'))
+        {
+            return $this->ticket->findAllwherein('system_id', $sistems_user);
+        }
+        else
+        {
+            return $this->ticket->findAllwherein('system_id', $sistems_user);
+        }
+
     }
 
     public function adjuntar_archivos($request, $id)

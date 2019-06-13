@@ -93,12 +93,14 @@
                     </a>
                 </div>
 
+                @role('contestar')
                 <div class="col-xs-6 text-right">
                     <a href="{{ route('ticket.edit', $selected_ticket->id) }}">
                     <button type="button" class="btn btn-primary btn-labeled btn-labeled-right">
                         <b><i class="icon-circle-right2"></i></b> Responder</button>
                     </a>
                 </div>
+                @endrole
             </div>
 
         </div>
